@@ -1,3 +1,4 @@
+
 class Geo:
     def __init__(self, lat: str, lng: str):
         self.lat: str = lat
@@ -11,11 +12,17 @@ class Geo:
 
 
 class Address:
-    street: str
-    suite: str
-    city: str
-    zipcode: str
-    geo: Geo
+    def __init__(self,
+                 street: str,
+                 suite: str,
+                 city: str,
+                 zipcode: str,
+                 geo: Geo):
+        self.street: str = street
+        self.suite: str = suite
+        self.city: str = city
+        self.zipcode: str = zipcode
+        self.geo: Geo = geo
 
     @staticmethod
     def from_dict(obj) -> 'Address':
@@ -28,9 +35,13 @@ class Address:
 
 
 class Company:
-    name: str
-    catchPhrase: str
-    bs: str
+    def __init__(self,
+                 name: str,
+                 catchPhrase: str,
+                 bs: str):
+        self.name: str = name
+        self.catchPhrase: str = catchPhrase
+        self.bs: str = bs
 
     @staticmethod
     def from_dict(obj) -> 'Company':
@@ -41,14 +52,23 @@ class Company:
 
 
 class User:
-    id: int
-    name: str
-    username: str
-    email: str
-    address: Address
-    phone: str
-    website: str
-    company: Company
+    def __init__(self,
+                 id: int,
+                 name: str,
+                 username: str,
+                 email: str,
+                 address: Address,
+                 phone: str,
+                 website: str,
+                 company: Company):
+        self.id: int = id
+        self.name: str = name
+        self.username: str = username
+        self.email: str = email
+        self.phone: str = phone
+        self.website: str = website
+        self.address: Address = address
+        self.company: Company = company
 
 
     @staticmethod

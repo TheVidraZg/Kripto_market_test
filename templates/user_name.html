@@ -1,1 +1,36 @@
-<h1>{{ name_varijabla }}, dobrodosli u FLASK<h1>
+{% extends 'base.html' %}
+
+{% block pageTitel %}Korisnici - 
+{% endblock pageTitel %}
+
+{% block body %}
+    <div class="row mt-3">
+        <div class="col-md-9">
+            <div class="row">
+
+                {% for user in users %}
+                    <div class="col-sm-3 mb-3">
+                        <div class="card">
+                            <img src="https://robohash.org/{{ user.id }}"
+                                    class="card-img-top"
+                                    alt="Avatar korisnickog racuna" />
+                            <div class="card-body">
+                                <h5 class="card-title">{{ user.name }}</h5>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">{{ user.email }}</li>
+                                    <li class="list-group-item">{{ user.phone }}</li>
+                                    <li class="list-group-item">{{ user.company.name }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+
+              </div>
+        </div>
+        <div class="col-md-3">
+            <button type="button" class="btn btn-primary">Dohvati korisnike</button>
+        </div>
+    </div>
+
+{% endblock body %}

@@ -1,3 +1,8 @@
-<h1>Dobrodosli u Flask<h1>
-<br/>
-<p>Ovo je paragraf<p>
+{% extends 'base.html' %}
+
+{% block pageTitel %}Pocetna - 
+{% endblock pageTitel %}
+
+{% block body %}
+    <h1>Dobro dosli u Flask template iz index.html</h1>
+{% endblock body %}
