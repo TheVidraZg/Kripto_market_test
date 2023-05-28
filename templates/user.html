@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block pageTitel %}{{ user.name }} - 
+{% endblock pageTitel %}
+
+{% block body %}
+    <div class="row">
+        <div class="col-12">
+            <h1>Dobro dosli {{ user.name }}!</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-8">
+            <dl class="row">
+                <dd class="col-sm-3">ID:</dd>
+                <dt class="col-sm-9">{{ user.id }}</dt>
+
+                {% if user.username %}
+                    <dd class="col-sm-3">Username:</dd>
+                    <dt class="col-sm-9">{{ user.username }}</dt>
+                {% endif  %}
+
+                <dd class="col-sm-3">Email:</dd>
+                <dt class="col-sm-9">{{ user.email }}</dt>
+
+                <dd class="col-sm-3">Phone:</dd>
+                <dt class="col-sm-9">{{ user.phone }}</dt>
+
+                <dd class="col-sm-3">Website:</dd>
+                <dt class="col-sm-9">{{ user.website }}</dt>
+
+                <dd class="col-sm-3">Ulica i broj:</dd>
+                <dt class="col-sm-9">{{ user.address.street }}</dt>
+
+                <dd class="col-sm-3">Apartman:</dd>
+                <dt class="col-sm-9">{{ user.address.suite }}</dt>
+
+                <dd class="col-sm-3">Postanski broj:</dd>
+                <dt class="col-sm-9">{{ user.address.zipcode }}</dt>
+
+                <dd class="col-sm-3">Grad:</dd>
+                <dt class="col-sm-9">{{ user.address.city }}</dt>
+
+                <dd class="col-sm-3">Lokacija:</dd>
+                <dt class="col-sm-9">lat:{{ user.address.geo.lat }}, lng:{{ user.address.geo.lng }}</dt>
+
+                <dd class="col-sm-3">Firma:</dd>
+                <dt class="col-sm-9">{{ user.company.name }}</dt>
+
+                <dd class="col-sm-3">Slogan firme:</dd>
+                <dt class="col-sm-9">{{ user.company.catchPhrase }}</dt>
+            </dl>
+
+            <p>
+                {{ user.__dict__.items() }}
+            </p>
+
+            <dl class="row">
+                {% for property, value in user.__dict__.items() %}
+                    <dd class="col-sm-3">{{ property.capitalize() }}</dd>
+                    <dt class="col-sm-9">{{ value }}</dt>
+                {% endfor %}
+            </dl>
+        </div>
+        <div class="col-4">
+            <span>
+                <a class="btn btn-outline-success" href="http://192.168.0.117:5000/users">Povratak na listu</a>
+            </span>
+        </div>
+    </div>
+{% endblock body %}

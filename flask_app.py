@@ -13,8 +13,14 @@ def index():
 @web_app.route('/user')
 def user_name():
     users = get_users_from_api()
-    return render_template('user_name.html',
+    return render_template('users.html',
                            users = users)
+
+@web_app.route('/users/<id>')
+def get_user(id):
+    user = get_user_from_api(int(id))
+    return render_template('user.html',
+                           user = user)
 
 
 @web_app.route('/api/user')
