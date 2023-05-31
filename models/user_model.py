@@ -1,5 +1,16 @@
+from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy.orm import declarative_base
 
-class Geo:
+Base = declarative_base()
+
+
+class Geo(Base):
+    __tablename__ = 'geos'
+    id =  Column(Integer, primary_key=True, autoincrement=True)
+    lat = Column(Float( precision = 8 , decimal_return_scale = 6), nullable=False)
+    lng = Column(Float( precision = 8 , decimal_return_scale = 6), nullable=False)
+    
+    
     def __init__(self, lat: str, lng: str):
         self.lat: str = lat
         self.lng: str = lng
@@ -11,7 +22,14 @@ class Geo:
         return Geo(_lat, _lng)
 
 
-class Address:
+class Address(Base):
+     __tablename__ = 'Adresses'
+     id =  Column(Integer, primary_key=True, autoincrement=True)
+     street = Column(String(500), nullable=True)
+     suite = Column(String(250), nullable=True)
+     city = Column(String(250), nullable=False)
+     zipcode = Column(String(50), nullable=False)
+     geo
     def __init__(self,
                  street: str,
                  suite: str,

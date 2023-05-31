@@ -14,9 +14,8 @@ class MainWindow(tk.Tk):
         self.frm_balance = FrmBalance(self)
         self.frm_balance.pack(padx=0, pady=(0, 10), fill='x')
 
-        self.frm_dashboard = FrmDashboard(self)
+        self.frm_dashboard = FrmDashboard(self, items_number=45)
         self.frm_dashboard.pack(padx=10, pady=(0, 10), fill='x')
-
 
 
 
