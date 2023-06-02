@@ -13,10 +13,25 @@ class User:
         self.first_name = first_name
         self.last_name = last_name
         
+    def __str__(self) -> str:
+        pass
+
+
+    def set_first_name(self, first_name):
+        pass
         
 users = []
 user =users.append(User('Pero', 'Peric'),
       users.append(User('Lav', 'Laic')),
       users.append(User('Mirko', 'Iviic')))
 
-        
+
+print(users[1])
+
+
+
+
+
+
+
+print(users[1][0])        

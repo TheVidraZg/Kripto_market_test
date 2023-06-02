@@ -1,5 +1,5 @@
 from flask import Flask, jsonify, render_template
-
+from repositories.db_repo import db_init, db_seed
 from services.user_api import get_users_from_api, get_user_from_api
 
 
@@ -36,4 +36,6 @@ def about_us():
 
 
 if __name__ == '__main__':
-    web_app.run(host='0.0.0.0', port=5000, debug=True)
+    db_init()
+    db_seed()
+    web_app.run(host='0.0.0.0', port=5000, debug=True) 
