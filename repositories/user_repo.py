@@ -1,21 +1,18 @@
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import and_
+
 from models.user_model import User
+from repositories.db_repo_init import session
 
 
-db_engine = create_engine('sqlite:///db_data/py_crypto_app.db')
-Session = sessionmaker()
-Session.configure(bind=db_engine)
-session = Session()
-
-# Sve funkcije koje pokrivaju CRUD operacije
 
 def user_create(user: User):
-    company = user.company
-
-
     entity = (session.query(User)
-              .filter(User.name == user.name))
+              .filter(and_(
+                    User.name == user.name,
+                    User.username == user.username,
+                    User.email == user.email
+              ))
+              .one_or_none())
     
     if entity is None:
         entity = user
@@ -24,16 +21,30 @@ def user_create(user: User):
 
 
 def user_get_all() -> list[User]:
-    pass
+    return (session.query(User).all())
 
 
 def user_get(id: int) -> User:
-    pass
+    return (session.query(User)
+              .filter(User.id == id)
+              .one_or_none())
 
 
 def user_update(user: User):
-    pass
+    entity = (session.query(User)
+              .filter(User.id == user.id)
+              .one_or_none())
+    
+    if entity is not None:
+        entity = user
+        session.commit()
 
 
 def user_delete(id: int):
-    pass
+    entity = (session.query(User)
+              .filter(User.id == id)
+              .one_or_none())
+    
+    if entity is not None:
+        session.delete(entity)
+        session.commit()

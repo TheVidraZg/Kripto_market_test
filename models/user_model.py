@@ -1,21 +1,23 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.orm import declarative_base 
 
 from models.adress_model import Address
 from models.company_model import Company
 
-Base = declarative_base()
-
+from repositories.db_repo_init import Base
+from infrastructure.constants import (ENTITY_NAME_LENGHT,
+                                      ENTITY_EMAIL_LENGHT,
+                                      ENTITY_PHONE_LENGHT,
+                                      ENTITY_WEBSITE_LENGHT)
 
 
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    name = Column(String(250), nullable=False)
-    username = Column(String(250), nullable=False)
-    email = Column(String(250), nullable=False)
-    phone = Column(String(250), nullable=True)
-    website = Column(String(250), nullable=True)
+    name = Column(String(ENTITY_NAME_LENGHT), nullable=False)
+    username = Column(String(ENTITY_NAME_LENGHT), nullable=False)
+    email = Column(String(ENTITY_EMAIL_LENGHT), nullable=False)
+    phone = Column(String(ENTITY_PHONE_LENGHT), nullable=True)
+    website = Column(String(ENTITY_WEBSITE_LENGHT), nullable=True)
 
     address_id = Column(Integer, ForeignKey('addresses.id'), nullable=True)
     company_id = Column(Integer, ForeignKey('companies.id'), nullable=True)

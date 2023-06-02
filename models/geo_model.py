@@ -1,13 +1,16 @@
 from sqlalchemy import Column, Integer, Float
 from sqlalchemy.orm import relationship, backref
-from models.user_model import Base
+
+from repositories.db_repo_init import Base
+from infrastructure.constants import (ENTITY_PRECISION,
+                                      ENTITY_SCALE)
 
 
 class Geo(Base):
     __tablename__ = 'geos'
     id = Column(Integer, primary_key=True, autoincrement=True)
-    lat = Column(Float(precision=8, decimal_return_scale=6), nullable=False)
-    lng = Column(Float(precision=8, decimal_return_scale=6), nullable=False)
+    lat = Column(Float(precision=ENTITY_PRECISION, decimal_return_scale=ENTITY_SCALE), nullable=False)
+    lng = Column(Float(precision=ENTITY_PRECISION, decimal_return_scale=ENTITY_SCALE), nullable=False)
 
     addresses = relationship('Address', backref=backref('geo'))
 

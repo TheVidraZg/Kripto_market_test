@@ -1,9 +1,7 @@
-from sqlalchemy import create_engine
-
-from models.user_model import Base
 from services.user_api import get_users_from_api
-from repositories.user_repo import user_create, db_engine
+from repositories.user_repo import user_create
 
+from repositories.db_repo_init import Base, db_engine
 
 
 
